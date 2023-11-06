@@ -1,6 +1,8 @@
 ﻿using CursProjects_GIt.View;
+using CursProjects_GIt.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,12 +26,10 @@ namespace CursProjects_GIt
         public MainWindow()
         {
             InitializeComponent();
+            AuthViewModel context = new AuthViewModel();
+            DataContext = context;
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            AuthView auth = new AuthView();
-            fr.Navigate(auth);
-        }
+        
     }
 }

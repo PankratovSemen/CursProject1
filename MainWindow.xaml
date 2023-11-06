@@ -5,9 +5,50 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CursProjects_GIt"
         mc:Ignorable="d"
-        Title="MainWindow" Height="1080" Width="1920" Loaded="Window_Loaded">
+        Title="MainWindow" Height="1080" Width="1920" >
+    <Window.Background>
+        <ImageBrush ImageSource="/Background.jpg"/>
+    </Window.Background>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="219*"/>
+            <ColumnDefinition Width="331*"/>
+            <ColumnDefinition Width="250*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Background="#162037" HorizontalAlignment="Center" VerticalAlignment="Center" Height="470" Width="458" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Visibility="{Binding AuthVisible}" >
+            <TextBlock Text="Авторизация" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="23" FontFamily="Segoe UI Black" Padding="10"/>
+            <Image Source="/1.jpg" Width="39" HorizontalAlignment="Left" Margin="48,53,0,0" Height="38"/>
+            <TextBlock Text="Логин" FontSize="14" FontFamily ="Segoe UI Black" Foreground="DarkGray" FontWeight="Medium" Margin="107,-46,0,0" />
+            <TextBox TextWrapping="NoWrap" AcceptsReturn="False" Width="294" Margin="55,-24,0,0" Background="#162037" BorderBrush="White" BorderThickness="0,0,0,1" Foreground="White" FontSize="18" FontFamily="Arial" Height="21" Text="{Binding Login}"/>
+            <Image Source="/2.png" Width="46" HorizontalAlignment="Left" Margin="48,53,0,0" Height="50"/>
+            <TextBlock Text="Пароль" FontSize="14" FontFamily ="Segoe UI Black" Foreground="DarkGray" FontWeight="Medium" Margin="107,-46,0,0" />
+            <PasswordBox  Width="297" Margin="42,-24,0,0" Background="#162037" BorderBrush="White" BorderThickness="0,0,0,1" Foreground="White" FontSize="18" FontFamily="Arial" Height="21"  />
+            <Button Content="Войти" Background="Blue" Foreground="White" Margin="3,75,0,0" Width="165" FontSize="18" Height="43" Command="{Binding Loginsys}" BorderBrush="Blue">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button Content="Регистрация" Foreground="White" Background="#162037" Height="41" Width="157" Margin="0,22,0,0" BorderBrush="White" BorderThickness="2" FontSize="18" Command="{Binding RegisterCommand}">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </StackPanel>
 
 
-
-    <Frame x:Name="fr" Height="1080" VerticalAlignment="Top" HorizontalAlignment="Center" Width="1920"/>
-</Window>
+        <StackPanel Background="#162037" HorizontalAlignment="Center" VerticalAlignment="Top" Height="875" Width="795" Grid.Row="0" Grid.RowSpan="2" Visibility="{Binding RegisterVisible}" Margin="0,82,0,0" Grid.Column="1">
+            <TextBlock FontFamily="Segoe UI Black" Text="Регистрация" Foreground="White" FontSize="50" HorizontalAlignment="Center" VerticalAlignment="Top" Padding="10"/>
+        </StackPanel>
+    </Grid>
+</Window> 

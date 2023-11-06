@@ -11,7 +11,9 @@ namespace CursProjects_GIt.Model.DataBase.Context
     {
         public DbSet<UsersModel> Users { get; set; } = null!;
 
-        public ApplicationContext() {
+        public ApplicationContext() 
+        {
+           
 
             Database.EnsureCreated();
         }
