@@ -34,7 +34,20 @@
         </StackPanel>
 
         <StackPanel Grid.Row="1" Background="#9590B4">
-            <TextBlock Text="Название компании" FontSize="12"></TextBlock>
+            <TextBlock Text="Название компании" FontSize="16" Foreground="DarkBlue" FontFamily="Bebas Neue Bold"></TextBlock>
+            <TextBox TextWrapping="NoWrap" AcceptsReturn="False" Width="294"  Background="#9590B4" BorderBrush="White" BorderThickness="0,0,0,1" Foreground="White" FontSize="18" FontFamily="Arial" Height="21" Text="{Binding Login}" HorizontalAlignment="Left"/>
+            <GroupBox Header="Выберите лицо" Margin="15" Grid.Row="0">
+                <StackPanel>
+                    <RadioButton Content="Компания" IsChecked="{Binding IsCompanyPriority}" Margin="3"/>
+                    <RadioButton Content="Частный инвестор" IsChecked="{Binding IsPersonPriority}" Margin="3"/>
+                    
+                </StackPanel>
+            </GroupBox>
+
+
+            <TextBlock Text="Инвестор" Visibility="{Binding PersonVisible}"/>
+            <TextBlock Text="Компания" Visibility="{Binding CompanyVisible}"/>
+            <TextBlock Text="{Binding GetResult}" />
         </StackPanel>
 
 

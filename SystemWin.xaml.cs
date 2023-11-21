@@ -1,4 +1,6 @@
 ﻿using CursProjects_GIt.Model.Logic;
+using CursProjects_GIt.View.Administrator;
+using CursProjects_GIt.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +29,8 @@ namespace CursProjects_GIt
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            
+            ShareHolders view = new ShareHolders();
+            frWin.Navigate(view);
         }
     }
 }

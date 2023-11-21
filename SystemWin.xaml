@@ -20,7 +20,7 @@
 
         <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Background="#162037">
             <Image Source="/23.png" Stretch="UniformToFill" StretchDirection="DownOnly" Width="42" Height="34" Margin="-1,0,0,0" HorizontalAlignment="Left"/>
-            
+
         </StackPanel>
 
 
@@ -49,11 +49,11 @@
             </Button>
         </StackPanel>
 
-        <Viewbox Margin="0,-2,0,0" Grid.Row="1" Grid.Column="1">
-            <Frame>
-                
+        
+            <Frame x:Name="frWin" Grid.Row="1" Grid.Column="2">
+
             </Frame>
-        </Viewbox>
+        
 
     </Grid>
 </Window>
