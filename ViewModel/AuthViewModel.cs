@@ -112,7 +112,9 @@ namespace CursProjects_GIt.ViewModel
                           MessageBox.Show(s);
                           if (vals != null)
                           {
-                            swithWindow("Регистрация");
+                            SystemWin system = new SystemWin();
+                           
+                            system.Show();
 
                           
                             
@@ -139,6 +141,24 @@ namespace CursProjects_GIt.ViewModel
                   {
 
                       swithWindow("Регистрация");
+
+
+                  }));
+            }
+        }
+
+        //Домой команда "назад"
+        //Register command Navigate
+        private RelayCommand _backAuth;
+        public RelayCommand BackAuth
+        {
+            get
+            {
+                return _backAuth ??
+                  (_backAuth = new RelayCommand(obj =>
+                  {
+
+                      swithWindow("Авторизация");
 
 
                   }));

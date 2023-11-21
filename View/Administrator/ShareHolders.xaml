@@ -1,0 +1,42 @@
+﻿<Page x:Class="CursProjects_GIt.View.Administrator.ShareHolders"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CursProjects_GIt.View.Administrator"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ShareHolders"
+       xmlns:VM="clr-namespace:CursProjects_GIt.ViewModel">
+    <Page.DataContext>
+        <VM:ViewShareHolders/>
+    </Page.DataContext>
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="58"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Background="#162037"></StackPanel>
+
+        <StackPanel Grid.Row="1" Background="#9590B4" Visibility="Hidden">
+            <TextBlock Text="Список акционеров" FontSize="25" HorizontalAlignment="Left" Padding="10" VerticalAlignment="Top" FontFamily="Bebas Neue Bold"></TextBlock>
+            <DataGrid ItemsSource="{Binding ShareHolders}" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Номер записи" Width="*" Binding="{Binding Path=Id }" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Название компании/ФИО" Width="*" Binding="{Binding Path=Title}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Сумма акций" Width="*" Binding="{Binding Path=SumShare }" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Количество акций" Width="*" Binding="{Binding Path=CountShares }" IsReadOnly="True"/>
+                    
+
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Background="#9590B4">
+            <TextBlock Text="Название компании" FontSize="12"></TextBlock>
+        </StackPanel>
+
+
+    </Grid>
+</Page>

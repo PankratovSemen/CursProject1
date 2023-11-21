@@ -10,6 +10,8 @@ namespace CursProjects_GIt.Model.DataBase.Context
     public class ApplicationContext:DbContext
     {
         public DbSet<UsersModel> Users { get; set; } = null!;
+        public DbSet<ShareHolders> ShareHolders { get; set; } = null!;
+        public DbSet<Share> Shares { get; set; } = null!;
 
         public ApplicationContext() 
         {

@@ -23,7 +23,7 @@
         </Grid.RowDefinitions>
 
         <StackPanel Background="#162037" HorizontalAlignment="Center" VerticalAlignment="Center" Height="470" Width="458" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Visibility="{Binding AuthVisible}" >
-            <TextBlock Text="Авторизация" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="23" FontFamily="Segoe UI Black" Padding="10"/>
+            <TextBlock Text="Авторизация" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="30" FontFamily="Segoe UI Black" Padding="10"/>
             <Image Source="/1.jpg" Width="39" HorizontalAlignment="Left" Margin="48,53,0,0" Height="38"/>
             <TextBlock Text="Логин" FontSize="14" FontFamily ="Segoe UI Black" Foreground="DarkGray" FontWeight="Medium" Margin="107,-46,0,0" />
             <TextBox TextWrapping="NoWrap" AcceptsReturn="False" Width="294" Margin="55,-24,0,0" Background="#162037" BorderBrush="White" BorderThickness="0,0,0,1" Foreground="White" FontSize="18" FontFamily="Arial" Height="21" Text="{Binding Login}"/>
@@ -37,7 +37,7 @@
                     </Style>
                 </Button.Resources>
             </Button>
-            <Button Content="Регистрация" Foreground="White" Background="#162037" Height="41" Width="157" Margin="0,22,0,0" BorderBrush="White" BorderThickness="2" FontSize="18" Command="{Binding RegisterCommand}">
+            <Button Content="Регистрация" Foreground="White" Background="#162037" Height="41" Width="157" Margin="0,22,0,0" BorderBrush="White" BorderThickness="2" FontSize="18" Command="{Binding RegisterCommand}" Visibility="Hidden">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="5"/>
@@ -49,6 +49,13 @@
 
         <StackPanel Background="#162037" HorizontalAlignment="Center" VerticalAlignment="Top" Height="875" Width="795" Grid.Row="0" Grid.RowSpan="2" Visibility="{Binding RegisterVisible}" Margin="0,82,0,0" Grid.Column="1">
             <TextBlock FontFamily="Segoe UI Black" Text="Регистрация" Foreground="White" FontSize="50" HorizontalAlignment="Center" VerticalAlignment="Top" Padding="10"/>
+            <Button Content="Назад" Foreground="White" Background="#162037" Height="41" Width="157" Margin="0,22,600,0" BorderBrush="White" BorderThickness="2" FontSize="18" Command="{Binding BackAuth}">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+            </Button>
         </StackPanel>
     </Grid>
 </Window> 
