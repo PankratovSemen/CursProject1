@@ -1,11 +1,4 @@
 ﻿using CursProjects_GIt.Model.Commands;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Documents.DocumentStructures;
-using System.Windows.Input;
 
 namespace CursProjects_GIt.ViewModel
 {
@@ -17,8 +10,8 @@ namespace CursProjects_GIt.ViewModel
             get { return _visibleCreate; }
             set { _visibleCreate = value; }
         }
-        public RegViewModel() 
-        
+        public RegViewModel()
+
         {
             Switch("Просмотр");
         }

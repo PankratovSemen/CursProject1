@@ -3,17 +3,18 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CursProjects_GIt.Model.DataBase.Context
 {
-    public class ApplicationContext : DbContext
+    public class ShareHoldersContext : DbContext
     {
-        public DbSet<UsersModel> Users { get; set; } = null!;
+        
+        public DbSet<ShareHolders> ShareHolders { get; set; } = null!;
         
 
-        public ApplicationContext()
+        public ShareHoldersContext()
         {
 
 
             Database.EnsureCreated();
-         
+           
         }
 
 

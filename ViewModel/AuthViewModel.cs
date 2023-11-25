@@ -1,25 +1,12 @@
 ﻿using CursProjects_GIt.Model.Commands;
-using CursProjects_GIt.Model.DataBase;
 using CursProjects_GIt.Model.DataBase.Context;
-
-using CursProjects_GIt.View;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.ComponentModel;
 using System.Linq;
-using System.Numerics;
-using System.Runtime.CompilerServices;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Input;
 
 namespace CursProjects_GIt.ViewModel
 {
-    public class AuthViewModel:ViewBase
+    public class AuthViewModel : ViewBase
     {
         public ApplicationContext db = new ApplicationContext();
         public AuthViewModel()
@@ -27,7 +14,7 @@ namespace CursProjects_GIt.ViewModel
             db.Users.Load();
             swithWindow("Авторизация");
 
-            
+
         }
         //Статус окна регистрации
         private string _registerVisibile;
@@ -44,12 +31,12 @@ namespace CursProjects_GIt.ViewModel
         }
         private void swithWindow(string title)
         {
-            if(title == "Авторизация")
+            if (title == "Авторизация")
             {
                 AuthVisible = "Visible";
                 RegisterVisible = "Hidden";
             }
-            else if(title == "Регистрация")
+            else if (title == "Регистрация")
             {
                 AuthVisible = "Hidden";
                 RegisterVisible = "Visible";
@@ -73,7 +60,9 @@ namespace CursProjects_GIt.ViewModel
         public string Password
         {
             get { return _password; }
-            set { _password = value;
+            set
+            {
+                _password = value;
 
                 OnPropertyChanged(nameof(Password));
 
@@ -86,12 +75,14 @@ namespace CursProjects_GIt.ViewModel
         public string Login
         {
             get { return _login; }
-            set { _login = value;
+            set
+            {
+                _login = value;
                 OnPropertyChanged(nameof(Login));
             }
         }
-        
-        
+
+
 
 
 
@@ -104,28 +95,28 @@ namespace CursProjects_GIt.ViewModel
                 return loginsys ??
                   (loginsys = new RelayCommand(obj =>
                   {
-                      
-                          // получаем объекты из бводим на консоль
-                          var users = db.Users.ToList();
-                          var vals = users.FirstOrDefault(p => p.Email == _login);
-                          string s = _login;
-                          MessageBox.Show(s);
-                          if (vals != null)
-                          {
-                            SystemWin system = new SystemWin();
-                           
-                            system.Show();
 
-                          
-                            
-                          }
-                          else
-                          {
-                              
-                              MessageBox.Show("no");
-                          }
-                          
-                      
+                      // получаем объекты из бводим на консоль
+                      var users = db.Users.ToList();
+                      var vals = users.FirstOrDefault(p => p.Email == _login);
+                      string s = _login;
+                      MessageBox.Show(s);
+                      if (vals != null)
+                      {
+                          SystemWin system = new SystemWin();
+
+                          system.Show();
+
+
+
+                      }
+                      else
+                      {
+
+                          MessageBox.Show("no");
+                      }
+
+
                   }));
             }
         }
@@ -223,7 +214,7 @@ namespace CursProjects_GIt.ViewModel
 
 
 
-    
+
 
 }
 

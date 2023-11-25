@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
-using System.Windows;
-using System.Windows.Shapes;
 using System.Security.Cryptography;
+using System.Windows;
 
 namespace CursProjects_GIt.Model.Logic
 {
@@ -70,7 +65,7 @@ namespace CursProjects_GIt.Model.Logic
             if (string.IsNullOrWhiteSpace(encryptedMessage))
                 throw new ArgumentException("Encrypted Message Required!", "encryptedMessage");
 
-            
+
             var plainText = SimpleDecrypt(encryptedMessage, cryptKey, authKey, nonSecretPayloadLength);
             return plainText;
         }
@@ -80,5 +75,5 @@ namespace CursProjects_GIt.Model.Logic
     }
 
 
-    
+
 }

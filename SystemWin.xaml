@@ -25,7 +25,7 @@
 
 
         <StackPanel Grid.Column="0" Grid.RowSpan="2" Background="#162037">
-            <Button x:Name="Shareholder" BorderBrush="White" BorderThickness="2" Background="#162037" Foreground="White" Content="Акционеры" Margin="0,72,0,0" Width="136">
+            <Button x:Name="Shareholder" BorderBrush="White" BorderThickness="2" Background="#162037" Foreground="White" Content="Акционеры" Margin="0,72,0,0" Width="136" Click="Shareholder_Click">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="5"/>
@@ -40,7 +40,7 @@
                 </Button.Resources>
             </Button>
 
-            <Button x:Name="ShareforHold" BorderBrush="White" BorderThickness="2" Background="#162037" Foreground="White" Content="Акции" Margin="0,-20,0,0" Width="136">
+            <Button x:Name="ShareforHold" BorderBrush="White" BorderThickness="2" Background="#162037" Foreground="White" Content="Акции" Margin="0,-20,0,0" Width="136" Click="ShareforHold_Click">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="5"/>
@@ -50,7 +50,7 @@
         </StackPanel>
 
         
-            <Frame x:Name="frWin" Grid.Row="1" Grid.Column="2">
+            <Frame x:Name="frWin" Grid.Row="1" Grid.Column="2" NavigationUIVisibility="Hidden">
 
             </Frame>
         

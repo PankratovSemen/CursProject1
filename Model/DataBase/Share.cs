@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CursProjects_GIt.Model.DataBase
 {
-    public  class Share
+    public class Share
     {
 
         public int Id { get; set; }
@@ -14,5 +10,6 @@ namespace CursProjects_GIt.Model.DataBase
         public string ShareHolder { get; set; }
         public int Sum { get; set; }
         public DateTime Date { get; set; }
+        public string Status { get; set; }
     }
 }

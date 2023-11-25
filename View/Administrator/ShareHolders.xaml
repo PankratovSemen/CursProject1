@@ -17,37 +17,46 @@
             <RowDefinition Height="58"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Background="#162037"></StackPanel>
+        <StackPanel Grid.Row="0" Background="#162037">
+            <Button Content="Просмотр" FontSize="16" FontFamily="Segoe UI" HorizontalAlignment="Left" Height="38" Command="{Binding ViewVisibleCommand}"/>
+            <Button Content="Создание" FontSize="16" FontFamily="Segoe UI" HorizontalAlignment="Left" Margin="92,-37,0,0" Height="39" Command="{Binding CreateVisibleCommand}"/>
+        </StackPanel>
 
-        <StackPanel Grid.Row="1" Background="#9590B4" Visibility="Hidden">
+        <StackPanel Grid.Row="1" Background="#9590B4" Visibility="{Binding Win}">
             <TextBlock Text="Список акционеров" FontSize="25" HorizontalAlignment="Left" Padding="10" VerticalAlignment="Top" FontFamily="Bebas Neue Bold"></TextBlock>
-            <DataGrid ItemsSource="{Binding ShareHolders}" AutoGenerateColumns="False">
+            <DataGrid ItemsSource="{Binding ShareHolders}" AutoGenerateColumns="False" SelectedItem="{Binding ShareHolders}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Номер записи" Width="*" Binding="{Binding Path=Id }" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Название компании/ФИО" Width="*" Binding="{Binding Path=Title}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Сумма акций" Width="*" Binding="{Binding Path=SumShare }" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Количество акций" Width="*" Binding="{Binding Path=CountShares }" IsReadOnly="True"/>
-                    
+
 
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>
 
-        <StackPanel Grid.Row="1" Background="#9590B4">
-            <TextBlock Text="Название компании" FontSize="16" Foreground="DarkBlue" FontFamily="Bebas Neue Bold"></TextBlock>
-            <TextBox TextWrapping="NoWrap" AcceptsReturn="False" Width="294"  Background="#9590B4" BorderBrush="White" BorderThickness="0,0,0,1" Foreground="White" FontSize="18" FontFamily="Arial" Height="21" Text="{Binding Login}" HorizontalAlignment="Left"/>
+        <StackPanel Grid.Row="1" Background="#9590B4" Visibility="{Binding WinCreate}">
             <GroupBox Header="Выберите лицо" Margin="15" Grid.Row="0">
                 <StackPanel>
                     <RadioButton Content="Компания" IsChecked="{Binding IsCompanyPriority}" Margin="3"/>
                     <RadioButton Content="Частный инвестор" IsChecked="{Binding IsPersonPriority}" Margin="3"/>
-                    
+
                 </StackPanel>
             </GroupBox>
 
 
-            <TextBlock Text="Инвестор" Visibility="{Binding PersonVisible}"/>
-            <TextBlock Text="Компания" Visibility="{Binding CompanyVisible}"/>
-            <TextBlock Text="{Binding GetResult}" />
+
+            <TextBlock Text="Наименование компании" FontSize="16" Foreground="DarkBlue" FontFamily="Bebas Neue Bold" Visibility="{Binding CompanyVisible, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+            <TextBox TextWrapping="NoWrap" AcceptsReturn="False" Width="294"  Background="#9590B4" BorderBrush="White" BorderThickness="0,0,0,1" Foreground="White" FontSize="18" FontFamily="Arial" Height="21" Text="{Binding TitleCompany}" HorizontalAlignment="Left" Visibility="{Binding CompanyVisible,UpdateSourceTrigger=PropertyChanged}"/>
+            <Button Content="Добавить" Command="{Binding AddCompany}" HorizontalAlignment="Left" Visibility="{Binding CompanyVisible}"></Button>
+            <TextBlock Text="Фамилия" FontSize="16" Foreground="DarkBlue" FontFamily="Bebas Neue Bold" Visibility="{Binding PersonVisible, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+            <TextBox TextWrapping="NoWrap" AcceptsReturn="False" Width="294"  Background="#9590B4" BorderBrush="White" BorderThickness="0,0,0,1" Foreground="White" FontSize="18" FontFamily="Arial" Height="21" Text="{Binding Surname}" HorizontalAlignment="Left" Visibility="{Binding PersonVisible, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBlock Text="Имя" FontSize="16" Foreground="DarkBlue" FontFamily="Bebas Neue Bold" Visibility="{Binding PersonVisible, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+            <TextBox TextWrapping="NoWrap" AcceptsReturn="False" Width="294"  Background="#9590B4" BorderBrush="White" BorderThickness="0,0,0,1" Foreground="White" FontSize="18" FontFamily="Arial" Height="21" Text="{Binding Name}" HorizontalAlignment="Left" Visibility="{Binding PersonVisible, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBlock Text="Отчество" FontSize="16" Foreground="DarkBlue" FontFamily="Bebas Neue Bold" Visibility="{Binding PersonVisible, UpdateSourceTrigger=PropertyChanged}" ></TextBlock>
+            <TextBox TextWrapping="NoWrap" AcceptsReturn="False" Width="294"  Background="#9590B4" BorderBrush="White" BorderThickness="0,0,0,1" Foreground="White" FontSize="18" FontFamily="Arial" Height="21" Text="{Binding MiddleName}" HorizontalAlignment="Left" Visibility="{Binding PersonVisible, UpdateSourceTrigger=PropertyChanged}"/>
+            <Button Content="Добавить" Command="{Binding AddPerson}" HorizontalAlignment="Left" Visibility="{Binding PersonVisible}"></Button>
         </StackPanel>
 
 

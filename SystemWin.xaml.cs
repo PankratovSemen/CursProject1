@@ -1,19 +1,5 @@
-﻿using CursProjects_GIt.Model.Logic;
-using CursProjects_GIt.View.Administrator;
-using CursProjects_GIt.ViewModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CursProjects_GIt.View.Administrator;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace CursProjects_GIt
 {
@@ -30,7 +16,19 @@ namespace CursProjects_GIt
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             ShareHolders view = new ShareHolders();
-            frWin.Navigate(view);
+            frWin.NavigationService.Navigate(view);
+        }
+
+        private void Shareholder_Click(object sender, RoutedEventArgs e)
+        {
+            ShareHolders view = new ShareHolders();
+            frWin.NavigationService.Navigate(view);
+        }
+
+        private void ShareforHold_Click(object sender, RoutedEventArgs e)
+        {
+            ShareForAdmin view = new ShareForAdmin();
+            frWin.NavigationService.Navigate(view);
         }
     }
 }
