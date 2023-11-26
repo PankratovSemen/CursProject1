@@ -13,6 +13,9 @@
     </Page.DataContext>
 
     <Grid Background="White">
+        <Grid.Resources>
+            <ImageBrush x:Key="AddButtonImageBrush" ImageSource="/View/Administrator/3.png" Stretch="UniformToFill"/>
+        </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="58"></RowDefinition>
             <RowDefinition></RowDefinition>
@@ -24,13 +27,30 @@
 
         <StackPanel Grid.Row="1" Background="#9590B4" Visibility="{Binding Win}">
             <TextBlock Text="Список акционеров" FontSize="25" HorizontalAlignment="Left" Padding="10" VerticalAlignment="Top" FontFamily="Bebas Neue Bold"></TextBlock>
-            <DataGrid ItemsSource="{Binding ShareHolders}" AutoGenerateColumns="False" SelectedItem="{Binding ShareHolders}">
+            <DataGrid ItemsSource="{Binding ShareHolders}" AutoGenerateColumns="False" SelectedItem="{Binding SelectedSH}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Номер записи" Width="*" Binding="{Binding Path=Id }" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Название компании/ФИО" Width="*" Binding="{Binding Path=Title}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Сумма акций" Width="*" Binding="{Binding Path=SumShare }" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Количество акций" Width="*" Binding="{Binding Path=CountShares }" IsReadOnly="True"/>
-
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Button Content="X" Margin="3" Command="{Binding Path=DataContext.DeleteItem,RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />
+                                </Grid>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Button Content="Редактировать" Margin="3" Command="{Binding Path=DataContext.EditVisibleCommand,RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />
+                                </Grid>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
 
                 </DataGrid.Columns>
             </DataGrid>
@@ -58,7 +78,12 @@
             <TextBox TextWrapping="NoWrap" AcceptsReturn="False" Width="294"  Background="#9590B4" BorderBrush="White" BorderThickness="0,0,0,1" Foreground="White" FontSize="18" FontFamily="Arial" Height="21" Text="{Binding MiddleName}" HorizontalAlignment="Left" Visibility="{Binding PersonVisible, UpdateSourceTrigger=PropertyChanged}"/>
             <Button Content="Добавить" Command="{Binding AddPerson}" HorizontalAlignment="Left" Visibility="{Binding PersonVisible}"></Button>
         </StackPanel>
-
+        <StackPanel Background="#9590B4" Grid.Row="1" Visibility="{Binding EditVisible}">
+            <Button Background="{StaticResource AddButtonImageBrush}" Command="{Binding ViewVisibleCommand}" HorizontalAlignment="Left" Height="30" Width="61"></Button>
+            <TextBlock Text="Акционер" FontSize="18" FontFamily="Bebas Neue" HorizontalAlignment="Center" Margin="-216,0,0,0" Padding="5"></TextBlock>
+            <TextBox TextWrapping="NoWrap" AcceptsReturn="False" Width="270"  Background="#9590B4" BorderBrush="White" BorderThickness="0,0,0,1" Foreground="White" FontSize="18" FontFamily="Arial" Height="21"  HorizontalAlignment="Center" Text="{Binding EditShareHolder}"/>
+            <Button Content="Обновить" HorizontalAlignment="Center" FontFamily="Bebas Neue" FontSize="18" Foreground="White" Background="#9590B4" Padding="10" BorderBrush="#9590B4" Command="{Binding EditCommand}"></Button>
+        </StackPanel>
 
     </Grid>
 </Page>

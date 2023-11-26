@@ -34,7 +34,20 @@ namespace CursProjects_GIt.ViewModel
 
         }
 
-        public List<ShareHolders> SelectedSH { get; set; }
+        private ShareHolders _selectedSH;
+        public ShareHolders SelectedSH
+        {
+            get
+            {
+                return _selectedSH;
+            }
+            set
+            {
+                _selectedSH = value;
+                OnPropertyChanged(nameof(SelectedSH));
+            }
+        }
+        
 
         public ViewShareHolders()
         {
@@ -42,6 +55,7 @@ namespace CursProjects_GIt.ViewModel
             CompanyVisible = "Visible";
             Win = "Visible";
             WinCreate = "Hidden";
+            EditVisible = "Hidden";
             ShareHolders = shareHoldContext.ShareHolders.ToList();
 
         }
@@ -306,6 +320,7 @@ namespace CursProjects_GIt.ViewModel
                   {
                       Win = "Visible";
                       WinCreate = "Hidden";
+                      EditVisible = "Hidden";
                       OnPropertyChanged(nameof(Win));
                       OnPropertyChanged(nameof(WinCreate));
 
@@ -326,6 +341,7 @@ namespace CursProjects_GIt.ViewModel
                   {
                       WinCreate = "Visible";
                       Win = "Hidden";
+                      EditVisible = "Hidden";
                       OnPropertyChanged(nameof(Win));
                       OnPropertyChanged(nameof(WinCreate));
 
@@ -352,6 +368,100 @@ namespace CursProjects_GIt.ViewModel
                       shareContext.SaveChanges();
                       ShareHolders = shareHoldContext.ShareHolders.ToList();
                       OnPropertyChanged(nameof(ShareHolders));
+
+
+                  }));
+            }
+        }
+
+        //Command for delete item in datagrid
+        private RelayCommand _deleteitem;
+        public RelayCommand DeleteItem
+        {
+            get
+            {
+                return _deleteitem ??
+                    (_deleteitem = new RelayCommand(obj =>
+                    {
+                        shareHoldContext.Remove(SelectedSH);
+                        shareHoldContext.SaveChanges();
+                        ShareHolders = shareHoldContext.ShareHolders.ToList();
+                        OnPropertyChanged(nameof(ShareHolders));
+                    }));
+
+            }
+        }
+
+
+        //View Edit 
+        private string _editVisible;
+        public string EditVisible
+        {
+            get
+            {
+                return _editVisible;
+            }
+
+            set
+            {
+                _editVisible = value;
+                OnPropertyChanged(nameof(EditVisible));
+            }
+        }
+
+
+        //Command for switch between screen Edit
+        private RelayCommand _editVisibleCommand;
+        public RelayCommand EditVisibleCommand
+        {
+            get
+            {
+                return _editVisibleCommand ??
+                  (_editVisibleCommand = new RelayCommand(obj =>
+                  {
+                      WinCreate = "Hidden";
+                      Win = "Hidden";
+                      EditVisible = "Visible";
+                      OnPropertyChanged(nameof(Win));
+                      OnPropertyChanged(nameof(WinCreate));
+                      OnPropertyChanged(nameof(EditVisible));
+
+                      EditShareHolder = SelectedSH.Title;
+
+                  }));
+            }
+        }
+
+        //Variable for edit
+        private string _editShareHolder;
+        public string EditShareHolder
+        {
+            get
+            {
+                return _editShareHolder;
+            }
+
+            set
+            {
+                _editShareHolder = value;
+                OnPropertyChanged(nameof(EditShareHolder));
+            }
+        }
+
+
+        //Command for Edit value
+        private RelayCommand _editCommand;
+        public RelayCommand EditCommand
+        {
+            get
+            {
+                return _editCommand ??
+                  (_editCommand = new RelayCommand(obj =>
+                  {
+                      SelectedSH.Title = EditShareHolder;
+                      shareHoldContext.ShareHolders.Update(SelectedSH);
+                      shareHoldContext.SaveChanges();
+
 
 
                   }));

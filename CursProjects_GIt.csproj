@@ -12,6 +12,7 @@
     <None Remove="2.png" />
     <None Remove="23.png" />
     <None Remove="Background.jpg" />
+    <None Remove="View\Administrator\3.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,6 +31,7 @@
     <Resource Include="2.png" />
     <Resource Include="23.png" />
     <Resource Include="Background.jpg" />
+    <Resource Include="View\Administrator\3.png" />
   </ItemGroup>
 
   <ItemGroup>

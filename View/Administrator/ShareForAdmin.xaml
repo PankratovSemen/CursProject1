@@ -18,11 +18,12 @@
             <RowDefinition Height="397*"></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Background="#162037">
-            <Button Content="Просмотр" Command="" HorizontalAlignment="Left"></Button>
-            <Button Content="Создание" Command="" HorizontalAlignment="Left" Margin="72,-18,0,0"></Button>
+            <Button Content="Просмотр" Command="{Binding ViewCommand}" HorizontalAlignment="Left"></Button>
+            <Button Content="Создание" Command="{Binding CreateNoteCommand}" HorizontalAlignment="Left" Margin="72,-18,0,0"></Button>
         </StackPanel>
-        <StackPanel Background="#9590B4" Grid.Row="1">
-            <DataGrid ItemsSource="{Binding Share}" AutoGenerateColumns="False">
+        <StackPanel Background="#9590B4" Grid.Row="1" Visibility="{Binding View}">
+            <Button Grid.Row="0" Grid.Column="2" Content="delete" Command="{Binding DeleteCommand}"/>
+            <DataGrid ItemsSource="{Binding Share}" AutoGenerateColumns="False" SelectedItem="{Binding SelectedShare}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Номер записи" Width="*" Binding="{Binding Path=Id }" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Наименование акции" Width="*" Binding="{Binding Path=Title}" IsReadOnly="True"/>
@@ -31,18 +32,40 @@
                     <DataGridTextColumn Header="Дата покупки" Width="*" Binding="{Binding Path=Date }" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Статус" Width="*" Binding="{Binding Path=Status}" IsReadOnly="True"/>
 
+                    
+                    <!--I don't wan't to use these "in-Row" delete buttons-->
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Button Content="X" Margin="3" Command="{Binding Path=DataContext.DeleteShare,RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />
+                                </Grid>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Button Content="Подтвердить" Margin="3" Command="{Binding Path=DataContext.ConfirmCommand,RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />
+                                </Grid>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
 
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>
 
-        <StackPanel Background="#9590B4" Grid.Row="1">
+        <StackPanel Background="#9590B4" Grid.Row="1" Visibility="{Binding CreateNotes}">
             <TextBlock Text="Владелец" FontSize="18" FontFamily="Bebas Neue" HorizontalAlignment="Left" Padding="5"></TextBlock>
-            <TextBox BorderThickness="0,0,0,1" BorderBrush="White" Background="#9590B4" Height="25" Width="303" HorizontalAlignment="Left"></TextBox>
+            <TextBox BorderThickness="0,0,0,1" BorderBrush="White" Background="#9590B4" Height="25" Width="303" HorizontalAlignment="Left" Text="{Binding Shareholder}"></TextBox>
             <TextBlock Text="Сумма" FontSize="18" FontFamily="Bebas Neue" HorizontalAlignment="Left" Padding="5"></TextBlock>
-            <TextBox BorderThickness="0,0,0,1" BorderBrush="White" Background="#9590B4" Height="25" Width="303" HorizontalAlignment="Left"></TextBox>
+            <TextBox BorderThickness="0,0,0,1" BorderBrush="White" Background="#9590B4" Height="25" Width="303" HorizontalAlignment="Left" Text="{Binding Sum}"></TextBox>
             <TextBlock Text="Дата транзакции" FontSize="18" FontFamily="Bebas Neue" HorizontalAlignment="Left" Padding="5"></TextBlock>
-            <DatePickerTextBox />
+            <DatePicker Text="{Binding Date}" SelectedDate="{Binding Date}"/>
+            <Button Command="{Binding AddShare}" Content="Добавить"></Button>
         </StackPanel>
     </Grid>
 </Page>
