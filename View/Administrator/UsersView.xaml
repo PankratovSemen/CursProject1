@@ -1,0 +1,87 @@
+﻿<Page x:Class="CursProjects_GIt.View.Administrator.UsersView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CursProjects_GIt.View.Administrator"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="UsersView"
+       xmlns:VM="clr-namespace:CursProjects_GIt.ViewModel">
+    <Page.DataContext>
+        <VM:UsersViewModel/>
+    </Page.DataContext>
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="53*"></RowDefinition>
+            <RowDefinition Height="397*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <StackPanel Background="#162037" Grid.Row="0"></StackPanel>
+        <StackPanel Background="#9590B4" Grid.Row="1" Visibility="{Binding View}">
+            <DataGrid ItemsSource="{Binding Users}" SelectedItem="{Binding SelectedUsers}" AutoGenerateColumns="False" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Номер записи" Width="*" Binding="{Binding Path=Id }" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Имя" Width="*" Binding="{Binding Path=Name}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Фамилия" Width="*" Binding="{Binding Path=Surname}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Электронная почта" Width="*" Binding="{Binding Path=Email}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Роль" Width="*" Binding="{Binding Path=Role}" IsReadOnly="True"/>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Button Content="X" Margin="3" Command="{Binding Path=DataContext.DeleteItem,RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />
+                                </Grid>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+
+
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Button Content="Изменить" Margin="3" Command="{Binding Path=DataContext.DeleteItem,RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />
+                                </Grid>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Button Content="Добавить" Margin="3" Command="{Binding Path=DataContext.NextCreate,RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />
+                                </Grid>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+                
+            </DataGrid>
+        </StackPanel>
+
+
+
+        <StackPanel Grid.Row="1" Background="#9590B4" Visibility="{Binding Create}">
+            <TextBlock Text="Email" FontFamily="Bebas Neue" FontSize="18"></TextBlock>
+            <TextBox BorderThickness="0,0,0,1" BorderBrush="White" FontFamily="Segoe UI" FontSize="18" Background="#9590B4" Text="{Binding Email}"></TextBox>
+
+            <TextBlock Text="Имя" FontSize="18" FontFamily="Bebas Neue" Padding="4"></TextBlock>
+            <TextBox BorderThickness="0,0,0,1" BorderBrush="White" Background="#9590B4" Text="{Binding Name}"></TextBox>
+            <TextBlock Text="Фамилия" FontSize="18" FontFamily="Bebas Neue" Padding="4"></TextBlock>
+            <TextBox FontFamily="Segoe UI" FontSize="18" BorderThickness="0,0,0,1" BorderBrush="White" Background="#9590B4" Text="{Binding Surname}"></TextBox>
+            <TextBlock Text="Пароль" FontSize="18" FontFamily="Bebas Neue" Padding="4"></TextBlock>
+            <TextBox BorderThickness="0,0,0,1" BorderBrush="White" Background="#9590B4" Text="{Binding Password}"></TextBox>
+            <TextBlock Text="Роль" FontSize="18" FontFamily="Bebas Neue" Padding="4"></TextBlock>
+            <ComboBox Text="{Binding Role}">
+                <TextBlock>Администратор</TextBlock>
+                <TextBlock>Акционер</TextBlock>
+            </ComboBox>
+
+            <Button Command="{Binding NewUser}" Content="Создать пользователя"></Button>
+        </StackPanel>
+    </Grid>
+</Page>

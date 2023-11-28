@@ -25,6 +25,7 @@
 
 
         <StackPanel Grid.Column="0" Grid.RowSpan="2" Background="#162037">
+            <TextBlock Name="Roled" Foreground="White" ></TextBlock>
             <Button x:Name="Shareholder" BorderBrush="White" BorderThickness="2" Background="#162037" Foreground="White" Content="Акционеры" Margin="0,72,0,0" Width="136" Click="Shareholder_Click">
                 <Button.Resources>
                     <Style TargetType="Border">
@@ -32,7 +33,7 @@
                     </Style>
                 </Button.Resources>
             </Button>
-            <Button x:Name="Share" BorderBrush="White" BorderThickness="2" Background="#162037" Foreground="White" Content="Акции" Margin="0,28,0,0" Width="136">
+            <Button x:Name="Share" BorderBrush="White" BorderThickness="2" Background="#162037" Foreground="White" Content="Акцииs" Margin="0,28,0,0" Width="136">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="5"/>
@@ -41,6 +42,14 @@
             </Button>
 
             <Button x:Name="ShareforHold" BorderBrush="White" BorderThickness="2" Background="#162037" Foreground="White" Content="Акции" Margin="0,-20,0,0" Width="136" Click="ShareforHold_Click">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+
+            <Button x:Name="UsersAdds" BorderBrush="White" BorderThickness="2" Background="#162037" Foreground="White" Content="Пользователи" Margin="0,21,0,0" Width="136" Click="UsersAdds_Click">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="5"/>

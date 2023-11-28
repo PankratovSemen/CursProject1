@@ -1,5 +1,7 @@
 ﻿using CursProjects_GIt.Model.Commands;
+using CursProjects_GIt.Model.DataBase;
 using CursProjects_GIt.Model.DataBase.Context;
+using CursProjects_GIt.Model.Logic;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Windows;
@@ -13,7 +15,21 @@ namespace CursProjects_GIt.ViewModel
         {
             db.Users.Load();
             swithWindow("Авторизация");
+            int s = db.Users.Count();
+            if (s == 0)
+            {
+                UsersModel user = new UsersModel()
+                {
+                    Name = "Семён",
+                    Surname = "Панкратов",
+                    Email = "simen204@mail.ru",
+                    Password = "admin",
+                    Role = "Администратор"
+                };
 
+                db.Users.Add(user);
+                db.SaveChanges();
+            }
 
         }
         //Статус окна регистрации
@@ -104,8 +120,11 @@ namespace CursProjects_GIt.ViewModel
                       if (vals != null)
                       {
                           SystemWin system = new SystemWin();
-
+                          system.Role = vals.Role;
                           system.Show();
+                          Data data = new Data();
+                          data.Role = vals.Role;
+                         
 
 
 

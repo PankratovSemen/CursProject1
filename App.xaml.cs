@@ -16,7 +16,7 @@ namespace CursProjects_GIt
         {
             base.OnStartup(e);
             this.StartupUri =
-             new Uri("pack://application:,,,/CursProjects_Git;component/SystemWin.xaml");
+             new Uri("pack://application:,,,/CursProjects_Git;component/MainWindow.xaml");
         }
 
 

@@ -37,7 +37,7 @@
                     </Style>
                 </Button.Resources>
             </Button>
-            <Button Content="Регистрация" Foreground="White" Background="#162037" Height="41" Width="157" Margin="0,22,0,0" BorderBrush="White" BorderThickness="2" FontSize="18" Command="{Binding RegisterCommand}" Visibility="Hidden">
+            <Button Content="Регистрация" Foreground="White" Background="#162037" Height="41" Width="157" Margin="0,22,0,0" BorderBrush="White" BorderThickness="2" FontSize="18" Command="{Binding RegisterCommand}" Visibility="Visible">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="5"/>

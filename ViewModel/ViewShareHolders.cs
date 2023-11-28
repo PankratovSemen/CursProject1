@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.Common;
 using System.Linq;
+using System.Security.Cryptography.Pkcs;
 using System.Windows;
 using System.Windows.Documents;
 
@@ -57,6 +58,7 @@ namespace CursProjects_GIt.ViewModel
             WinCreate = "Hidden";
             EditVisible = "Hidden";
             ShareHolders = shareHoldContext.ShareHolders.ToList();
+            OnPropertyChanged(nameof(ShareHolders));
 
         }
 
@@ -323,6 +325,8 @@ namespace CursProjects_GIt.ViewModel
                       EditVisible = "Hidden";
                       OnPropertyChanged(nameof(Win));
                       OnPropertyChanged(nameof(WinCreate));
+                      ShareHolders = shareHoldContext.ShareHolders.ToList();
+                      OnPropertyChanged(nameof(ShareHolders));
 
 
                   }));
@@ -344,28 +348,6 @@ namespace CursProjects_GIt.ViewModel
                       EditVisible = "Hidden";
                       OnPropertyChanged(nameof(Win));
                       OnPropertyChanged(nameof(WinCreate));
-
-
-
-                  }));
-            }
-        }
-        private RelayCommand _saveCommand;
-        public RelayCommand SaveCommand
-        {
-            get
-            {
-                return _saveCommand ??
-                  (_saveCommand = new RelayCommand(obj =>
-                  {
-                      db.SaveChanges();
-                      shareHoldContext.SaveChanges();
-                      shareContext.SaveChanges();
-                      MessageBox.Show("Сохранено");
-                      shareHoldContext.Remove(SelectedSH);
-                      db.SaveChanges();
-                      shareHoldContext.SaveChanges();
-                      shareContext.SaveChanges();
                       ShareHolders = shareHoldContext.ShareHolders.ToList();
                       OnPropertyChanged(nameof(ShareHolders));
 
@@ -373,6 +355,7 @@ namespace CursProjects_GIt.ViewModel
                   }));
             }
         }
+        
 
         //Command for delete item in datagrid
         private RelayCommand _deleteitem;
@@ -461,12 +444,24 @@ namespace CursProjects_GIt.ViewModel
                       SelectedSH.Title = EditShareHolder;
                       shareHoldContext.ShareHolders.Update(SelectedSH);
                       shareHoldContext.SaveChanges();
+                      ShareHolders = shareHoldContext.ShareHolders.ToList();
+                      OnPropertyChanged(nameof(ShareHolders));
+                      EditShareHolder = "";
 
 
+                      WinCreate = "Hidden";
+                      Win = "Visible";
+                      EditVisible = "Hidden";
+                      OnPropertyChanged(nameof(Win));
+                      OnPropertyChanged(nameof(WinCreate));
+                      OnPropertyChanged(nameof(EditVisible));
 
                   }));
             }
         }
+
+
+        public string Role { get; set; }
     }
 }
 
