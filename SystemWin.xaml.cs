@@ -1,4 +1,5 @@
-﻿using CursProjects_GIt.View.Administrator;
+﻿using CursProjects_GIt.View;
+using CursProjects_GIt.View.Administrator;
 using System.Windows;
 
 namespace CursProjects_GIt
@@ -57,6 +58,12 @@ namespace CursProjects_GIt
         private void UsersAdds_Click(object sender, RoutedEventArgs e)
         {
             UsersView view = new UsersView();
+            frWin.NavigationService.Navigate(view);
+        }
+
+        private void Share_Click(object sender, RoutedEventArgs e)
+        {
+            SharesHoldersView view = new SharesHoldersView();
             frWin.NavigationService.Navigate(view);
         }
     }
